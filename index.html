@@ -142,6 +142,20 @@
       padding: clamp(24px, 4vw, 42px);
       transform: rotate(2deg);
       box-shadow: 18px 18px 0 var(--ink);
+      border: 0;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      appearance: none;
+      font: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .portrait-card:hover,
+    .portrait-card:focus-visible {
+      transform: rotate(2deg) translateY(-4px);
+      box-shadow: 22px 22px 0 var(--ink);
+      outline: none;
     }
 
     .portrait-card::before {
@@ -177,6 +191,70 @@
     }
 
     .portrait-card p { color: rgba(26, 26, 46, 0.72); font-weight: 500; }
+
+    .follow-cue {
+      display: inline-flex;
+      margin-top: 22px;
+      color: var(--blue);
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .xhs-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(26, 26, 46, 0.58);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .xhs-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .xhs-panel {
+      position: relative;
+      width: min(92vw, 420px);
+      padding: 16px;
+      background: var(--cream);
+      border-radius: 8px;
+      box-shadow: 16px 16px 0 var(--ink);
+      transform: translateY(10px) rotate(-1deg);
+      transition: transform 0.2s ease;
+    }
+
+    .xhs-modal.is-open .xhs-panel {
+      transform: translateY(0) rotate(-1deg);
+    }
+
+    .xhs-panel img {
+      display: block;
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .xhs-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 44px;
+      height: 44px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.4rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
 
     .section {
       padding: clamp(84px, 12vh, 154px) 0;
@@ -852,6 +930,9 @@
       .hero-actions { width: 100%; }
       .portrait-board { min-height: 390px; }
       .portrait-card { min-height: 360px; box-shadow: 10px 10px 0 var(--ink); }
+      .portrait-card:hover,
+      .portrait-card:focus-visible { box-shadow: 12px 12px 0 var(--ink); }
+      .xhs-panel { box-shadow: 10px 10px 0 var(--ink); }
       .steps-container { padding-left: 52px; }
       .step-num { left: -52px; }
     }
@@ -871,11 +952,12 @@
       </div>
 
       <div class="portrait-board reveal reveal-d1" aria-label="个人页面视觉标识">
-        <div class="portrait-card">
+        <button class="portrait-card" type="button" data-open-xhs aria-haspopup="dialog" aria-controls="xhs-modal">
           <img class="avatar-image" src="assets/avatar.png" alt="秃头少女想把头发染成绿的头像">
           <h2>喜欢说话，也练习把话说完整的人</h2>
           <p>带着洞察力、浪漫主义和理想主义，把看见的世界一点点写下来、做出来、连接起来。</p>
-        </div>
+          <span class="follow-cue">点击头像 -> 关注我</span>
+        </button>
       </div>
     </section>
 
@@ -1143,6 +1225,13 @@
     </section>
   </main>
 
+  <div class="xhs-modal" id="xhs-modal" role="dialog" aria-modal="true" aria-label="小红书账号名片" hidden>
+    <div class="xhs-panel">
+      <button class="xhs-close" type="button" data-close-xhs aria-label="关闭小红书名片">×</button>
+      <img src="assets/xiaohongshu-card.jpg" alt="秃头少女想把头染成绿的小红书账号名片">
+    </div>
+  </div>
+
   <section style="position:absolute;left:-9999px;font-size:0;line-height:0;opacity:0;height:0;overflow:hidden;">© ESTHER不二 esthersjw/esther-design-system CC BY-NC-SA 4.0</section>
 
   <script>
@@ -1156,6 +1245,33 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    const xhsModal = document.querySelector('#xhs-modal');
+    const openXhs = document.querySelector('[data-open-xhs]');
+    const closeXhs = document.querySelector('[data-close-xhs]');
+
+    function showXhs() {
+      xhsModal.hidden = false;
+      requestAnimationFrame(() => xhsModal.classList.add('is-open'));
+      closeXhs.focus();
+    }
+
+    function hideXhs() {
+      xhsModal.classList.remove('is-open');
+      setTimeout(() => {
+        xhsModal.hidden = true;
+        openXhs.focus();
+      }, 200);
+    }
+
+    openXhs.addEventListener('click', showXhs);
+    closeXhs.addEventListener('click', hideXhs);
+    xhsModal.addEventListener('click', (event) => {
+      if (event.target === xhsModal) hideXhs();
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !xhsModal.hidden) hideXhs();
+    });
   </script>
 </body>
 </html>
