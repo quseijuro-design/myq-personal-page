@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>秃头少女想把头发染成绿的</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #015697;
+      --blue-deep: #01406F;
+      --yellow: #F5B70A;
+      --red: #0A3D2E;
+      --green: #0A3D2E;
+      --green-soft: #E6F0EA;
+      --coral: #D95D39;
+      --cream: #fefcf6;
+      --cream-dark: #faf6eb;
+      --ink: #1A1A2E;
+      --ink-light: #4A4A5A;
+      --ink-faint: #8A8A9A;
+      --dark-panel: #151821;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    ::selection { background: var(--yellow); color: var(--ink); }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(100% - 48px, 1300px);
+      margin: 0 auto;
+    }
+
+    .label-caps {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .label-caps::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--yellow);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+      align-items: center;
+      gap: clamp(40px, 7vw, 100px);
+      padding: clamp(70px, 10vh, 120px) 0 clamp(56px, 8vh, 90px);
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.08;
+      max-width: 850px;
+      margin-top: 18px;
+    }
+
+    .hero h1 .mark {
+      background: linear-gradient(180deg, transparent 58%, rgba(245, 183, 10, 0.5) 58%);
+      padding: 0 6px;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin-top: 28px;
+      color: var(--ink-light);
+      font-size: clamp(1rem, 1.6vw, 1.16rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 26px;
+      border-radius: 8px;
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fefcf6;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(1, 86, 151, 0.22);
+    }
+
+    .portrait-board {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .portrait-card {
+      position: absolute;
+      inset: 34px 0 auto auto;
+      width: min(100%, 390px);
+      min-height: 430px;
+      background: var(--yellow);
+      border-radius: 8px;
+      padding: clamp(24px, 4vw, 42px);
+      transform: rotate(2deg);
+      box-shadow: 18px 18px 0 var(--ink);
+    }
+
+    .portrait-card::before {
+      content: "MYQ";
+      position: absolute;
+      right: 20px;
+      bottom: -24px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(4rem, 9vw, 7rem);
+      font-style: italic;
+      color: rgba(26, 26, 46, 0.12);
+      line-height: 1;
+    }
+
+    .avatar-image {
+      display: block;
+      width: clamp(132px, 19vw, 188px);
+      height: clamp(132px, 19vw, 188px);
+      object-fit: cover;
+      object-position: center 28%;
+      border-radius: 50% 44% 48% 45%;
+      background: #8f8f8f;
+      margin-bottom: 34px;
+      border: 8px solid #fefcf6;
+      box-shadow: 0 10px 0 rgba(26, 26, 46, 0.16);
+    }
+
+    .portrait-card h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .portrait-card p { color: rgba(26, 26, 46, 0.72); font-weight: 500; }
+
+    .section {
+      padding: clamp(84px, 12vh, 154px) 0;
+    }
+
+    .section-alt { background: var(--cream-dark); }
+
+    .section-header {
+      margin-bottom: clamp(38px, 6vw, 74px);
+    }
+
+    .section-number {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-style: italic;
+      color: var(--blue);
+      opacity: 0.34;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.6vw, 34px);
+    }
+
+    .number-card {
+      position: relative;
+      min-height: 260px;
+      padding: clamp(28px, 3vw, 40px);
+      background: #fffaf0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(26, 26, 46, 0.06);
+    }
+
+    .number-card .card-number {
+      position: absolute;
+      top: -18px;
+      right: 10px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(5rem, 10vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(1, 86, 151, 0.08);
+      pointer-events: none;
+    }
+
+    .number-card:nth-child(2) .card-number { color: rgba(245, 183, 10, 0.24); }
+    .number-card:nth-child(3) .card-number { color: rgba(10, 61, 46, 0.12); }
+
+    .number-card h3 {
+      position: relative;
+      max-width: 260px;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.28rem;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .number-card p {
+      position: relative;
+      color: var(--ink-light);
+      font-size: 0.95rem;
+    }
+
+    .self-finder {
+      display: grid;
+      gap: clamp(44px, 6vw, 82px);
+    }
+
+    .model-kicker {
+      color: var(--ink-light);
+      font-size: 1rem;
+      margin-bottom: clamp(22px, 4vw, 36px);
+    }
+
+    .circle-model {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(18px, 3vw, 34px);
+    }
+
+    .circle-item {
+      display: grid;
+      justify-items: start;
+      gap: 14px;
+    }
+
+    .circle-dot {
+      width: clamp(70px, 8vw, 92px);
+      height: clamp(70px, 8vw, 92px);
+      border-radius: 50%;
+      box-shadow: 0 8px 0 rgba(26, 26, 46, 0.08);
+    }
+
+    .circle-item:nth-child(1) .circle-dot { background: var(--coral); }
+    .circle-item:nth-child(2) .circle-dot { background: var(--yellow); }
+    .circle-item:nth-child(3) .circle-dot { background: var(--blue); }
+    .circle-item:nth-child(4) .circle-dot { background: var(--green); }
+
+    .circle-item h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.12rem;
+      line-height: 1.35;
+    }
+
+    .circle-item p {
+      color: var(--ink-light);
+      font-size: 0.92rem;
+      max-width: 240px;
+    }
+
+    .direction-card {
+      padding: clamp(30px, 4vw, 48px);
+      background: var(--dark-panel);
+      color: #e2e8f0;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: start;
+    }
+
+    .direction-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.3;
+    }
+
+    .direction-card p {
+      color: #b8c7dd;
+      font-size: 1rem;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(18px, 3vw, 28px);
+    }
+
+    .question-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 128px;
+      padding: 24px clamp(22px, 3vw, 32px);
+      background: #fffaf0;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(26, 26, 46, 0.05);
+    }
+
+    .question-card .q-num {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: rgba(1, 86, 151, 0.42);
+    }
+
+    .question-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.02rem;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .question-card p {
+      color: var(--ink-light);
+      font-size: 0.92rem;
+    }
+
+    .dark-section {
+      background: var(--dark-panel);
+      color: #e2e8f0;
+      padding: clamp(80px, 12vh, 150px) 0;
+    }
+
+    .quote-minimal {
+      max-width: 900px;
+      text-align: left;
+    }
+
+    .quote-minimal .quote-body {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.35rem, 3.2vw, 2.3rem);
+      font-weight: 900;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .quote-minimal .quote-body .hl {
+      background: linear-gradient(transparent 60%, rgba(245, 183, 10, 0.34) 60%);
+      padding: 0 4px;
+      color: #fefcf6;
+    }
+
+    .quote-rule {
+      width: 72px;
+      height: 4px;
+      background: var(--yellow);
+      margin-bottom: 26px;
+    }
+
+    .quote-conclusion {
+      max-width: 640px;
+      color: #b8c7dd;
+      font-size: 1rem;
+    }
+
+    .layout-sticky {
+      display: grid;
+      grid-template-columns: 0.35fr 1fr;
+      gap: clamp(42px, 7vw, 110px);
+      align-items: start;
+    }
+
+    .sticky-side {
+      position: sticky;
+      top: 54px;
+    }
+
+    .sticky-side .note {
+      margin-top: 22px;
+      padding: 24px 24px;
+      border: 2px dashed rgba(1, 86, 151, 0.3);
+      border-radius: 8px;
+      background: #fffaf0;
+      color: var(--ink-light);
+    }
+
+    .note-label {
+      display: block;
+      width: max-content;
+      margin-bottom: 8px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(30px, 4vw, 52px);
+      padding-left: 62px;
+      position: relative;
+    }
+
+    .steps-container::before {
+      content: "";
+      position: absolute;
+      left: 21px;
+      top: 28px;
+      bottom: 28px;
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--yellow) 0 10px,
+        transparent 10px 18px
+      );
+    }
+
+    .step-item {
+      position: relative;
+      padding: 28px clamp(24px, 3vw, 38px);
+      background: #fffaf0;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(26, 26, 46, 0.05);
+    }
+
+    .step-num {
+      position: absolute;
+      left: -62px;
+      top: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fefcf6;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+    }
+
+    .step-item:nth-child(2) .step-num { background: var(--yellow); color: var(--ink); }
+    .step-item:nth-child(3) .step-num { background: var(--red); }
+    .step-item:nth-child(4) .step-num { background: var(--blue-deep); }
+
+    .step-item h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.16rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .step-item p {
+      color: var(--ink-light);
+      font-size: 0.94rem;
+    }
+
+    .topic-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .topic-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(1, 86, 151, 0.08);
+      color: var(--blue-deep);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .step-item:nth-child(2) .topic-pill {
+      background: rgba(245, 183, 10, 0.22);
+      color: #8b7200;
+    }
+
+    .step-item:nth-child(3) .topic-pill {
+      background: rgba(10, 61, 46, 0.09);
+      color: var(--red);
+    }
+
+    .project-system {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+      gap: clamp(42px, 7vw, 96px);
+      align-items: center;
+    }
+
+    .system-lede {
+      color: var(--ink-light);
+      font-size: clamp(1rem, 1.6vw, 1.12rem);
+      margin-top: 24px;
+      max-width: 620px;
+    }
+
+    .system-mark {
+      display: inline;
+      background: linear-gradient(180deg, transparent 58%, rgba(245, 183, 10, 0.55) 58%);
+      padding: 0 5px;
+    }
+
+    .method-section {
+      background: var(--green-soft);
+      padding: clamp(84px, 12vh, 154px) 0;
+      overflow: hidden;
+    }
+
+    .method-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(320px, 1fr);
+      gap: clamp(42px, 7vw, 100px);
+      align-items: start;
+    }
+
+    .method-intro {
+      color: var(--ink-light);
+      font-size: clamp(1rem, 1.6vw, 1.12rem);
+      margin-top: 24px;
+      max-width: 560px;
+    }
+
+    .method-board {
+      display: grid;
+      gap: 18px;
+    }
+
+    .method-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 26px clamp(24px, 3vw, 36px);
+      background: #fffaf0;
+      border-radius: 8px;
+      box-shadow: 0 2px 18px rgba(26, 26, 46, 0.06);
+    }
+
+    .method-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green);
+      color: var(--ink);
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      box-shadow: 0 6px 0 rgba(26, 26, 46, 0.12);
+    }
+
+    .method-card:nth-child(2) .method-icon { background: var(--yellow); }
+    .method-card:nth-child(3) .method-icon { background: var(--blue); color: #fefcf6; }
+
+    .method-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.2rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .method-card p {
+      color: var(--ink-light);
+      font-size: 0.94rem;
+    }
+
+    .method-note {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 2px dashed rgba(26, 26, 46, 0.18);
+      border-radius: 8px;
+      background: rgba(254, 252, 246, 0.72);
+      color: var(--ink-light);
+    }
+
+    .system-map {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+    }
+
+    .system-center {
+      position: relative;
+      z-index: 2;
+      width: clamp(190px, 22vw, 260px);
+      min-height: clamp(190px, 22vw, 260px);
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 28px;
+      box-shadow: 12px 12px 0 var(--ink);
+      transform: rotate(-2deg);
+    }
+
+    .system-center strong {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.35rem, 3vw, 2.1rem);
+      line-height: 1.25;
+    }
+
+    .module-card {
+      position: absolute;
+      width: min(280px, 46%);
+      padding: 22px 24px;
+      background: #fffaf0;
+      border-radius: 8px;
+      box-shadow: 0 2px 18px rgba(26, 26, 46, 0.08);
+    }
+
+    .module-card:nth-child(1) { top: 0; left: 0; }
+    .module-card:nth-child(2) { top: 62px; right: 0; }
+    .module-card:nth-child(3) { bottom: 0; left: 22%; }
+
+    .module-card .module-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(1, 86, 151, 0.1);
+      color: var(--blue-deep);
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .module-card:nth-child(2) .module-tag {
+      background: rgba(245, 183, 10, 0.25);
+      color: #8b7200;
+    }
+
+    .module-card:nth-child(3) .module-tag {
+      background: rgba(10, 61, 46, 0.1);
+      color: var(--red);
+    }
+
+    .module-card h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .module-card p {
+      color: var(--ink-light);
+      font-size: 0.9rem;
+    }
+
+    .system-flow {
+      margin-top: clamp(36px, 5vw, 64px);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .system-flow::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      right: 28px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--yellow), var(--blue));
+    }
+
+    .flow-step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .flow-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fefcf6;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .flow-step:nth-child(2) .flow-dot { background: var(--yellow); color: var(--ink); }
+    .flow-step:nth-child(3) .flow-dot { background: var(--red); }
+    .flow-step:nth-child(4) .flow-dot { background: var(--blue-deep); }
+
+    .flow-step h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .flow-step p {
+      color: var(--ink-light);
+      font-size: 0.86rem;
+    }
+
+    .accent-section {
+      background: var(--blue);
+      color: #fefcf6;
+      padding: clamp(82px, 12vh, 150px) 0;
+      overflow: hidden;
+    }
+
+    .accent-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(260px, 0.55fr);
+      gap: clamp(40px, 7vw, 90px);
+      align-items: center;
+    }
+
+    .accent-section h2 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      line-height: 1.18;
+      margin-bottom: 20px;
+    }
+
+    .accent-section p {
+      max-width: 640px;
+      color: rgba(254, 252, 246, 0.78);
+      margin-bottom: 30px;
+    }
+
+    .signature {
+      position: relative;
+      min-height: 230px;
+      display: grid;
+      place-items: center;
+    }
+
+    .signature span {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      color: var(--yellow);
+      transform: rotate(-5deg);
+    }
+
+    .signature::before,
+    .signature::after {
+      content: "";
+      position: absolute;
+      border: 3px solid rgba(245, 183, 10, 0.55);
+      border-radius: 50%;
+    }
+
+    .signature::before { width: 230px; height: 120px; transform: rotate(-13deg); }
+    .signature::after { width: 180px; height: 90px; transform: rotate(11deg); border-color: rgba(10, 61, 46, 0.5); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn { transition: none; }
+    }
+
+    @media (max-width: 900px) {
+      .container { width: min(100% - 32px, 1300px); }
+      .hero,
+      .layout-sticky,
+      .accent-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { min-height: auto; }
+      .portrait-board { min-height: 440px; }
+      .portrait-card { left: 0; right: auto; width: min(94%, 390px); }
+      .three-col,
+      .circle-model,
+      .direction-card,
+      .question-grid,
+      .method-layout,
+      .project-system,
+      .system-flow {
+        grid-template-columns: 1fr;
+      }
+      .system-map { min-height: auto; gap: 18px; place-items: stretch; }
+      .system-center,
+      .module-card {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        transform: none;
+      }
+      .system-flow { gap: 24px; }
+      .system-flow::before { display: none; }
+      .sticky-side { position: static; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .hero-actions { width: 100%; }
+      .portrait-board { min-height: 390px; }
+      .portrait-card { min-height: 360px; box-shadow: 10px 10px 0 var(--ink); }
+      .steps-container { padding-left: 52px; }
+      .step-num { left: -52px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero container">
+      <div class="reveal">
+        <span class="label-caps">Personal Page</span>
+        <h1>秃头少女想把头发<span class="mark">染成绿的</span></h1>
+        <p class="hero-copy">我在练习把说不顺的话、散落的标签和复杂的资料，整理成可以表达、可以学习、可以继续探索的东西。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#custom">Reset</a>
+          <a class="btn btn-secondary" href="mailto:QuSeijuro@gmail.com">写信给我</a>
+        </div>
+      </div>
+
+      <div class="portrait-board reveal reveal-d1" aria-label="个人页面视觉标识">
+        <div class="portrait-card">
+          <img class="avatar-image" src="assets/avatar.png" alt="秃头少女想把头发染成绿的头像">
+          <h2>喜欢说话，也练习把话说完整的人</h2>
+          <p>带着洞察力、浪漫主义和理想主义，把看见的世界一点点写下来、做出来、连接起来。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-number">01</span>
+          <h2 class="section-title">找到自己</h2>
+        </div>
+        <div class="self-finder">
+          <div class="reveal">
+            <p class="model-kicker">四圈模型：我站在哪个交叉点</p>
+            <div class="circle-model">
+              <article class="circle-item">
+                <span class="circle-dot"></span>
+                <h3>我热爱的</h3>
+                <p>表达自己、观察世界、探索未知，把模糊的情绪慢慢说清楚。</p>
+              </article>
+              <article class="circle-item">
+                <span class="circle-dot"></span>
+                <h3>我擅长的</h3>
+                <p>洞察关系、捕捉细微感受，把复杂内容整理成摘要和路径。</p>
+              </article>
+              <article class="circle-item">
+                <span class="circle-dot"></span>
+                <h3>世界需要的</h3>
+                <p>让说不清的人也能表达，让信息变成可以学习、复述和行动的东西。</p>
+              </article>
+              <article class="circle-item">
+                <span class="circle-dot"></span>
+                <h3>可获得回报的</h3>
+                <p>AI 学习工具、表达辅助产品、知识管理工作流和小型自动化工具。</p>
+              </article>
+            </div>
+          </div>
+
+          <article class="direction-card reveal reveal-d1">
+            <h3>我想做“表达的入口”</h3>
+            <p>帮助那些心里有很多东西、但不知道怎么说出来的人，把想法、情绪、资料和标签整理成可以表达、可以学习、可以继续探索的东西。</p>
+          </article>
+
+          <div class="reveal reveal-d2">
+            <p class="model-kicker">六个问题帮我起步</p>
+            <div class="question-grid">
+              <article class="question-card">
+                <span class="q-num">01</span>
+                <div>
+                  <h3>不需要外力驱动就会钻研的事</h3>
+                  <p>表达、观察、总结，给混乱的信息和情绪找结构。</p>
+                </div>
+              </article>
+              <article class="question-card">
+                <span class="q-num">02</span>
+                <div>
+                  <h3>我目前正在做的事</h3>
+                  <p>hate 标签连接器、document-to-study-summary、wego-shell。</p>
+                </div>
+              </article>
+              <article class="question-card">
+                <span class="q-num">03</span>
+                <div>
+                  <h3>我的技能和能力</h3>
+                  <p>文档总结、AI 工具使用、工作流设计、观察和命名。</p>
+                </div>
+              </article>
+              <article class="question-card">
+                <span class="q-num">04</span>
+                <div>
+                  <h3>朋友可能觉得我擅长的</h3>
+                  <p>敏感、有洞察，能看到别人没说出口的东西。</p>
+                </div>
+              </article>
+              <article class="question-card">
+                <span class="q-num">05</span>
+                <div>
+                  <h3>别人费力、我觉得轻松的事</h3>
+                  <p>从零散信息里抓重点，把模糊想法变成更准确的话。</p>
+                </div>
+              </article>
+              <article class="question-card">
+                <span class="q-num">06</span>
+                <div>
+                  <h3>让我想当键盘侠的瞬间</h3>
+                  <p>看到复杂的人被简单贴标签，或表达不顺被误解成没有想法。</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section">
+      <div class="container quote-minimal reveal">
+        <p class="quote-body">我想努力表达自己对这个世界的看法：<span class="hl">我来到这世上，是为了看看太阳。</span></p>
+        <div class="quote-rule"></div>
+        <p class="quote-conclusion">不是每一句话都会顺利抵达，但每一次认真说出来，都是一次重新开始。</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="learn">
+      <div class="container layout-sticky">
+        <aside class="sticky-side reveal">
+          <span class="section-number">02</span>
+          <h2 class="section-title">选题</h2>
+          <div class="note">
+            <span class="note-label">Topic rule</span>
+            <p>我的选题从三个地方来：说不顺但很想说清楚的事、正在做的小工具、以及我对世界忍不住产生的观察。</p>
+          </div>
+        </aside>
+
+        <div class="steps-container">
+          <article class="step-item reveal reveal-d1">
+            <span class="step-num">1</span>
+            <h3>从自己出发</h3>
+            <p>先写那些卡在喉咙里、但我一直想说清楚的东西。表达困难不是缺陷，它本身就是我的入口。</p>
+            <div class="topic-pills">
+              <span class="topic-pill">喜欢说话但结巴</span>
+              <span class="topic-pill">如何把情绪说清楚</span>
+              <span class="topic-pill">我为什么想看看太阳</span>
+            </div>
+          </article>
+          <article class="step-item reveal reveal-d2">
+            <span class="step-num">2</span>
+            <h3>从项目出发</h3>
+            <p>每个正在做的工具，都是一个可以持续展开的内容母题。写它为什么存在、解决什么、哪里还笨拙。</p>
+            <div class="topic-pills">
+              <span class="topic-pill">hate 标签连接器</span>
+              <span class="topic-pill">document-to-study-summary</span>
+              <span class="topic-pill">壳内一点点</span>
+            </div>
+          </article>
+          <article class="step-item reveal reveal-d3">
+            <span class="step-num">3</span>
+            <h3>从外部出发</h3>
+            <p>看见世界如何误解表达、标签和工具，再回到自己的角度。不是追热点，是找到它和我真正有关的那一面。</p>
+            <div class="topic-pills">
+              <span class="topic-pill">复杂的人被简单贴标签</span>
+              <span class="topic-pill">信息堆砌但没有理解</span>
+              <span class="topic-pill">表达不顺被误读</span>
+            </div>
+          </article>
+          <article class="step-item reveal reveal-d3">
+            <span class="step-num">4</span>
+            <h3>筛选标准</h3>
+            <p>一个选题要同时满足：我有真实体感、能帮助别人说清楚一点、和我的项目或长期观察有关、发之前有“这个值得讲”的感觉。</p>
+            <div class="topic-pills">
+              <span class="topic-pill">真实体感</span>
+              <span class="topic-pill">帮助表达</span>
+              <span class="topic-pill">长期相关</span>
+              <span class="topic-pill">值得一讲</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="method-section">
+      <div class="container method-layout">
+        <div class="reveal">
+          <span class="section-number">03</span>
+          <h2 class="section-title">表达方法</h2>
+          <p class="method-intro">今天的页面其实已经长出了一套方法：不是强迫自己马上说漂亮的话，而是先承认笨拙，再把笨拙拆成能处理的步骤。</p>
+          <div class="method-note">
+            <span class="note-label">Try again</span>
+            <p>表达不是一次性抵达。它更像一次次 Reset：看见一点，连接一点，说出来一点。</p>
+          </div>
+        </div>
+
+        <div class="method-board reveal reveal-d1">
+          <article class="method-card">
+            <span class="method-icon">1</span>
+            <div>
+              <h3>看见</h3>
+              <p>先捕捉让我停下来的东西：情绪、标签、问题、误解、太阳，或者某个想说但没说顺的瞬间。</p>
+            </div>
+          </article>
+          <article class="method-card">
+            <span class="method-icon">2</span>
+            <div>
+              <h3>连接</h3>
+              <p>把它和自己的经历、正在做的项目、手边的资料连起来，找到它为什么和我有关。</p>
+            </div>
+          </article>
+          <article class="method-card">
+            <span class="method-icon">3</span>
+            <div>
+              <h3>说出</h3>
+              <p>不追求完美，先变成一句话、一篇摘要、一个标签连接器、一个 shell 入口，或者一封邮件。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="project-system">
+          <div class="reveal">
+            <span class="section-number">04</span>
+            <h2 class="section-title">我的项目：表达入口系统</h2>
+            <p class="system-lede">我现在做的不是孤立的小工具，而是一套围绕表达展开的系统：先把情绪和标签连起来，再把资料变成学习路径，最后把重复动作收进 shell 里的日常入口。</p>
+            <p class="system-lede"><span class="system-mark">目标很简单：</span>让心里有很多东西的人，可以更轻一点地把自己讲出来。</p>
+          </div>
+
+          <div class="system-map reveal reveal-d1" aria-label="项目系统地图">
+            <article class="module-card">
+              <span class="module-tag">Emotion</span>
+              <h3>hate 标签连接器</h3>
+              <p>把散落的情绪、标签和关系重新连起来，看看一个标签背后真正指向哪里。</p>
+            </article>
+            <article class="module-card">
+              <span class="module-tag">Study</span>
+              <h3>document-to-study-summary</h3>
+              <p>把文档变成可学习的摘要，让信息不只是被存放，而是真的被消化和带走。</p>
+            </article>
+            <article class="module-card">
+              <span class="module-tag">Shell</span>
+              <h3>壳内一点点</h3>
+              <p>在 shell 里慢慢打磨工作流，把零散命令、重复动作和小工具收进一个顺手入口。</p>
+            </article>
+            <div class="system-center">
+              <strong>表达<br>不是出口<br>是入口</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-flow reveal reveal-d2">
+          <article class="flow-step">
+            <span class="flow-dot">1</span>
+            <h3>收集</h3>
+            <p>把说不顺的想法、资料和标签先放进来。</p>
+          </article>
+          <article class="flow-step">
+            <span class="flow-dot">2</span>
+            <h3>连接</h3>
+            <p>找到情绪、概念、文档和行动之间的关系。</p>
+          </article>
+          <article class="flow-step">
+            <span class="flow-dot">3</span>
+            <h3>整理</h3>
+            <p>把混乱内容变成摘要、路径和可复用模板。</p>
+          </article>
+          <article class="flow-step">
+            <span class="flow-dot">4</span>
+            <h3>表达</h3>
+            <p>用更准确的话、更顺手的工具，再试一次。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="accent-section" id="custom">
+      <div class="container accent-grid">
+        <div class="reveal">
+          <span class="label-caps" style="color:#fefcf6;">Contact</span>
+          <h2>写下你想重新表达的事</h2>
+          <p>可以从一封邮件开始。讲项目、讲世界、讲那些还没说顺但很想说清楚的东西。</p>
+          <a class="btn btn-secondary" href="mailto:QuSeijuro@gmail.com?subject=Reset%20%E4%B8%80%E4%B8%8B%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F&body=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E4%B9%9F%E6%83%B3%20Reset%20%E4%B8%80%E4%B8%8B%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%83%B3%E5%92%8C%E4%BD%A0%E8%81%8A%E8%81%8A%EF%BC%9A" style="background:var(--yellow);border-color:var(--yellow);color:var(--ink);">写一封 Reset 邮件</a>
+        </div>
+        <div class="signature reveal reveal-d1" aria-label="手写签名装饰">
+          <span>Try again</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section style="position:absolute;left:-9999px;font-size:0;line-height:0;opacity:0;height:0;overflow:hidden;">© ESTHER不二 esthersjw/esther-design-system CC BY-NC-SA 4.0</section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
