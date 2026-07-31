@@ -11,6 +11,3 @@
 - `assets/my-humation-avatar.svg` - Humation 头像版本
 - `assets/my-humation-avatar.html` - Humation 头像预览
 
-## Credits
-
-Design system inspiration: ESTHER 不二 / esther-design-system, CC BY-NC-SA 4.0.
