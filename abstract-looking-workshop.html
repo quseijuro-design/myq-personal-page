@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="一套从抽象画出发，练习观察、组词、联想与表达的互动学习页。" />
+  <title>颜色先于解释｜抽象观看练习</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fefcf6;
+      --cream-dark: #faf6eb;
+      --ink: #25252d;
+      --ink-soft: #5e5962;
+      --ink-faint: #9b9292;
+      --berry: #8f1d5a;
+      --teal: #0f7678;
+      --cobalt: #113a78;
+      --coral: #ef5f59;
+      --mustard: #d79a18;
+      --blush: #d9a0ab;
+      --charcoal: #25252d;
+      --line: rgba(37, 37, 45, .16);
+      --shadow: 0 20px 55px rgba(37, 37, 45, .12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--mustard); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .container { width: min(1300px, calc(100% - 4rem)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      color: var(--berry);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 2.2rem; height: 3px; background: var(--mustard); }
+    h1, h2, h3 { font-family: "Noto Serif SC", serif; font-weight: 900; line-height: 1.18; }
+    h1 { font-size: clamp(3.3rem, 8vw, 7.6rem); letter-spacing: -.07em; }
+    h2 { font-size: clamp(2rem, 4.4vw, 4.2rem); letter-spacing: -.05em; }
+    h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); }
+    .serif-note { font-family: "Fraunces", "Noto Serif SC", serif; font-style: italic; }
+
+    /* The signature visual: three abstract color studies, each with a different reading direction. */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      align-items: center;
+      gap: clamp(3rem, 7vw, 8rem);
+      padding: clamp(5rem, 10vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
+      position: relative;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-copy h1 { max-width: 760px; margin-top: 1.7rem; }
+    .hero-copy h1 em { color: var(--berry); font-style: normal; }
+    .hero-lede { max-width: 540px; margin-top: 2rem; color: var(--ink-soft); font-size: 1.1rem; }
+    .hero-rule { width: min(340px, 80%); height: 9px; margin-top: 2.5rem; background: var(--teal); box-shadow: 44px 0 0 var(--coral), 88px 0 0 var(--mustard); }
+    .hero-visual { position: relative; min-height: 560px; }
+    .hero-gallery { position: relative; height: 100%; min-height: 560px; }
+    .hero-gallery figure { position: absolute; overflow: hidden; background: var(--charcoal); box-shadow: var(--shadow); }
+    .hero-gallery img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .hero-gallery figure:first-child { width: 58%; height: 82%; right: 3%; top: 4%; transform: rotate(2deg); z-index: 2; }
+    .hero-gallery figure:nth-child(2) { width: 48%; height: 43%; left: 0; top: 20%; transform: rotate(-6deg); z-index: 1; }
+    .hero-gallery figure:nth-child(3) { width: 49%; height: 42%; left: 15%; bottom: 2%; transform: rotate(4deg); z-index: 3; }
+    .hero-gallery figure:first-child::after { content: "TURN ME"; position: absolute; right: 1rem; bottom: 1rem; padding: .4rem .7rem; background: var(--mustard); color: var(--ink); font: .72rem "Fraunces", serif; letter-spacing: .12em; }
+    .visual-caption { position: absolute; bottom: -1%; right: 0; background: var(--cream); padding: .7rem 1rem; color: var(--ink-soft); font-size: .78rem; box-shadow: 0 10px 30px rgba(37,37,45,.1); z-index: 4; }
+    .example { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(2rem, 6vw, 7rem); align-items: center; }
+    .example-image-wrap { background: var(--charcoal); padding: clamp(.7rem, 1.5vw, 1.2rem); box-shadow: var(--shadow); }
+    .example-image-wrap img { display: block; width: 100%; height: min(70vh, 680px); object-fit: contain; background: var(--charcoal); transition: transform .65s cubic-bezier(.16,1,.3,1); }
+    .example-image-wrap img.turned { transform: rotate(90deg) scale(.72); }
+    .example-copy h2 { margin-top: 1rem; }
+    .example-copy > p { margin-top: 1.2rem; color: var(--ink-soft); }
+    .turn-control { display: inline-flex; margin-top: 1.7rem; align-items: center; gap: .7rem; border: 0; border-bottom: 3px solid var(--berry); background: transparent; color: var(--berry); padding: .35rem 0; font-weight: 700; }
+    .turn-control:hover, .turn-control:focus-visible { color: var(--teal); border-color: var(--teal); }
+    .reading-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.3rem; }
+    .reading-note { padding: 1rem; background: var(--cream-dark); border-top: 5px solid var(--mustard); font-size: .9rem; }
+    .reading-note:nth-child(2) { border-color: var(--teal); }
+    .reading-note:nth-child(3) { border-color: var(--coral); }
+    .gallery { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 1rem; align-items: stretch; }
+    .gallery figure { background: var(--charcoal); padding: .8rem; color: var(--cream); }
+    .gallery figure:first-child { grid-row: span 2; }
+    .gallery img { width: 100%; height: 100%; min-height: 250px; object-fit: cover; display: block; }
+    .gallery figcaption { padding: .8rem .2rem .2rem; color: rgba(254,252,246,.75); font-size: .8rem; }
+    .gallery-label { color: var(--mustard); font: .72rem "Fraunces", serif; letter-spacing: .12em; text-transform: uppercase; }
+
+    .stripe { height: 22px; background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(15,118,120,.12) 4px 5px); }
+    .section { padding: clamp(6rem, 12vh, 11rem) 0; }
+    .section--alt { background: var(--cream-dark); }
+    .section-head { display: grid; grid-template-columns: .34fr 1fr; gap: 2rem; align-items: end; margin-bottom: clamp(3rem, 6vw, 6rem); }
+    .section-num { color: var(--berry); font: italic clamp(3rem, 7vw, 6rem) "Fraunces", serif; opacity: .32; line-height: .8; }
+    .section-head p { max-width: 590px; margin-top: 1.2rem; color: var(--ink-soft); }
+
+    .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(3rem, 7vw, 8rem); position: relative; }
+    .steps::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 2px dashed rgba(143,29,90,.25); }
+    .step { display: grid; grid-template-columns: 66px 1fr; gap: 1.4rem; padding: 2.3rem 0 3.5rem; position: relative; }
+    .step:nth-child(even) { padding-top: 8rem; }
+    .step-index { width: 48px; height: 48px; display: grid; place-items: center; background: var(--mustard); color: var(--ink); border-radius: 50%; font: 600 1.2rem "Fraunces", serif; z-index: 1; }
+    .step:nth-child(2) .step-index, .step:nth-child(4) .step-index { background: var(--teal); color: var(--cream); }
+    .step p { margin-top: .75rem; color: var(--ink-soft); }
+    .micro-example { margin-top: 1.2rem; padding: 1rem 1.1rem; background: rgba(217,160,171,.2); color: var(--berry); font-size: .9rem; }
+
+    .practice-shell { display: grid; grid-template-columns: .42fr 1fr; gap: clamp(3rem, 7vw, 8rem); align-items: start; }
+    .practice-intro { position: sticky; top: 2rem; }
+    .practice-intro h2 { margin-top: 1.2rem; }
+    .practice-intro p { margin-top: 1.3rem; color: var(--ink-soft); }
+    .practice-note { margin-top: 2.3rem; padding: 1rem 1.2rem; border: 2px solid var(--teal); color: var(--teal); font-size: .9rem; }
+    .prompt-list { display: grid; gap: 1.2rem; }
+    .prompt-card { background: var(--cream); border-bottom: 5px solid var(--berry); padding: clamp(1.3rem, 3vw, 2.2rem); }
+    .prompt-card:nth-child(2) { border-color: var(--teal); }
+    .prompt-card:nth-child(3) { border-color: var(--mustard); }
+    .prompt-card label { display: block; font-weight: 700; }
+    .prompt-card small { display: block; color: var(--ink-faint); margin-top: .3rem; }
+    textarea { width: 100%; min-height: 86px; margin-top: 1rem; resize: vertical; border: 1px solid var(--line); border-radius: 0; background: var(--cream-dark); color: var(--ink); padding: .9rem 1rem; outline: none; }
+    textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(15,118,120,.12); }
+    .wordbank { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1rem; }
+    .word-chip { border: 1px solid rgba(37,37,45,.2); background: transparent; color: var(--ink-soft); padding: .35rem .7rem; font-size: .82rem; }
+    .word-chip:hover, .word-chip:focus-visible { background: var(--mustard); color: var(--ink); border-color: var(--mustard); }
+
+    .dark-section { background: var(--charcoal); color: var(--cream); padding: clamp(5rem, 10vh, 9rem) 0; }
+    .dark-grid { display: grid; grid-template-columns: .48fr 1fr; gap: clamp(3rem, 8vw, 9rem); align-items: center; }
+    .dark-grid h2 { color: var(--cream); }
+    .dark-grid p { color: rgba(254,252,246,.68); margin-top: 1.4rem; max-width: 560px; }
+    .quote-box { border: 2px solid var(--coral); padding: clamp(2rem, 4vw, 4rem); position: relative; }
+    .quote-box::before { content: "CHECK"; position: absolute; top: -1rem; left: 1.5rem; background: var(--coral); color: var(--ink); padding: .35rem .7rem; font: .72rem "Fraunces", serif; letter-spacing: .14em; }
+    .quote-box p { color: var(--cream); font: clamp(1.3rem, 2.7vw, 2.2rem) "Noto Serif SC", serif; line-height: 1.55; margin: 0; }
+    .check-lines { margin-top: 1.8rem; display: grid; gap: .7rem; color: rgba(254,252,246,.78); }
+    .check-lines span { display: flex; gap: .7rem; align-items: start; }
+    .check-lines span::before { content: "×"; color: var(--coral); font-size: 1.3rem; line-height: 1.2; }
+
+    .compress { background: var(--coral); padding: clamp(5rem, 10vh, 9rem) 0; }
+    .compress-grid { display: grid; grid-template-columns: .64fr .36fr; gap: clamp(3rem, 8vw, 9rem); align-items: end; }
+    .compress h2 { max-width: 760px; }
+    .compress p { max-width: 560px; margin-top: 1.3rem; color: rgba(37,37,45,.76); }
+    .composer { background: var(--cream); padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow); }
+    .composer label { font-weight: 700; }
+    .composer textarea { background: var(--cream); min-height: 145px; }
+    .counter { display: flex; justify-content: space-between; color: var(--ink-faint); font-size: .78rem; margin-top: .35rem; }
+    .footer { padding: 3rem 0; background: var(--cream-dark); color: var(--ink-faint); font-size: .78rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 1rem; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
+
+    @media (max-width: 900px) {
+      .container { width: min(100% - 3rem, 720px); }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 5rem; }
+      .hero-visual { min-height: 480px; }
+      .example { grid-template-columns: 1fr; }
+      .example-image-wrap img { height: min(72vh, 650px); }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery figure:first-child { grid-row: span 1; grid-column: span 2; }
+      .section-head, .practice-shell, .dark-grid, .compress-grid { grid-template-columns: 1fr; }
+      .practice-intro { position: static; }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .step:nth-child(even) { padding-top: 2.3rem; }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 15px; }
+      .container { width: min(100% - 2rem, 520px); }
+      h1 { font-size: clamp(2.8rem, 15vw, 4.3rem); }
+      .hero-visual { min-height: 390px; }
+      .hero-gallery { min-height: 390px; }
+      .hero-gallery figure:first-child { width: 60%; height: 82%; right: 2%; }
+      .hero-gallery figure:nth-child(2) { width: 50%; height: 42%; left: 0; }
+      .hero-gallery figure:nth-child(3) { width: 52%; height: 40%; left: 11%; }
+      .step { grid-template-columns: 54px 1fr; gap: 1rem; }
+      .footer-inner { flex-direction: column; }
+      .reading-notes { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery figure:first-child { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero container">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">ABSTRACT LOOKING LAB</span>
+        <h1>颜色先于<br /><em>解释</em></h1>
+        <p class="hero-lede">一套从抽象画出发的表达练习：先看见，再组词；先贴近画面，再决定要不要走远。</p>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="serif-note" style="margin-top:2.1rem; color:var(--berry);">不是把画说得深，而是把自己看见的说清楚。</p>
+      </div>
+      <div class="hero-visual reveal d1" aria-label="三幅撞色抽象画作品">
+        <div class="hero-gallery">
+          <figure><img src="assets/abstract-learning/collision-ship-turn.png" alt="竖幅撞色抽象画：蓝色、橙色与洋红色块组成的厚涂画面" /></figure>
+          <figure><img src="assets/abstract-learning/collision-01.png" alt="蓝橙洋红与荧光绿组成的方形撞色抽象画" /></figure>
+          <figure><img src="assets/abstract-learning/collision-03.png" alt="孔雀蓝、珊瑚红、紫色和黄色组成的抽象画" /></figure>
+        </div>
+        <span class="visual-caption">色块不是答案，是线索。</span>
+      </div>
+    </section>
+
+    <div class="stripe" aria-hidden="true"></div>
+
+    <section class="section container">
+      <div class="section-head reveal">
+        <span class="section-num">01</span>
+        <div><span class="eyebrow">THE METHOD</span><h2>把“像什么”拆成几个动作</h2><p>你不需要立刻说出一个有灵魂的句子。语言感通常来自一串小而准确的转换。</p></div>
+      </div>
+      <div class="steps">
+        <article class="step reveal d1"><span class="step-index">1</span><div><h3>只描述</h3><p>先说颜色、形状、方向、肌理。不要解释，也不要急着寻找主题。</p><div class="micro-example">湖蓝、粉色、深粉色；长方形色块；刮擦的边缘。</div></div></article>
+        <article class="step reveal d2"><span class="step-index">2</span><div><h3>组词</h3><p>把零散名词合成短语，让形状和动作开始靠近。</p><div class="micro-example">门 + 色块 → 三扇像门一样的色块</div></div></article>
+        <article class="step reveal d1"><span class="step-index">3</span><div><h3>建空间</h3><p>问它们如何排列、哪里深、哪里可以进入。把画面变成一条观看路径。</p><div class="micro-example">门 → 深蓝色空洞 → 下方的小洞</div></div></article>
+        <article class="step reveal d2"><span class="step-index">4</span><div><h3>放入身体</h3><p>说你站在哪里、被什么吸引、身体出现了什么反应。</p><div class="micro-example">视线停住；时间变慢；我想藏进去。</div></div></article>
+        <article class="step reveal d1"><span class="step-index">5</span><div><h3>检查距离</h3><p>最后问：这句话还能不能指回画面？如果不能，可能已经从观看走向过度解释。</p><div class="micro-example">画面线索 → 观看经验 → 个人意义</div></div></article>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="example">
+          <div class="example-image-wrap reveal">
+            <img id="turnImage" src="assets/abstract-learning/collision-ship-turn.png" alt="一幅竖向撞色抽象画，包含蓝色、橙色、洋红和绿色的厚涂色块" />
+          </div>
+          <div class="example-copy reveal d1">
+            <span class="eyebrow">ONE IMAGE / TWO READINGS</span>
+            <h2>先有一幅画，才有后面的内容。</h2>
+            <p>这幅画竖着看时，主要是纵向色块、刮擦和厚重肌理。左转之后，原本的纵向关系变成横向关系，蓝色像水面，橙色像黄昏，深色区域开始像一艘船。</p>
+            <p>这不是画里藏着唯一答案，而是观看方向改变后，色块之间形成了新的关系。点击下面的按钮，亲自改变它的方向。</p>
+            <button class="turn-control" id="turnButton" type="button" aria-controls="turnImage" aria-pressed="false">↻ 左转 90°</button>
+            <div class="reading-notes">
+              <div class="reading-note"><strong>竖着看</strong><br />色柱、墙面、材料。</div>
+              <div class="reading-note"><strong>左转后</strong><br />水面、晚霞、船。</div>
+              <div class="reading-note"><strong>继续追问</strong><br />是画在变，还是我在组织它？</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(5rem, 10vh, 8rem);" class="reveal">
+          <div class="section-head" style="margin-bottom:2.5rem;"><span class="section-num">02</span><div><span class="eyebrow">THE MATERIAL</span><h2>用几幅画练习，不用凭空想。</h2><p>每幅画都可以从不同方向开始。先描述，再联想；不要把 AI 生成时没有预设的内容，误写成作品的唯一意图。</p></div></div>
+          <div class="gallery">
+            <figure><img src="assets/abstract-learning/collision-01.png" alt="蓝橙洋红与荧光绿组成的方形撞色抽象画" /><figcaption><span class="gallery-label">Study A</span><br />先找色块，再找它们的方向。</figcaption></figure>
+            <figure><img src="assets/abstract-learning/collision-02.png" alt="蓝色、橙色、红色和绿色组成的方形撞色抽象画" /><figcaption><span class="gallery-label">Study B</span><br />哪些形状像门？</figcaption></figure>
+            <figure><img src="assets/abstract-learning/collision-03.png" alt="孔雀蓝、珊瑚红、紫色和黄色组成的抽象画" /><figcaption><span class="gallery-label">Study C</span><br />哪一块让你停下来？</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container practice-shell">
+        <div class="practice-intro reveal">
+          <span class="eyebrow">TRY IT NOW</span>
+          <h2>先不要写得好。</h2>
+          <p>把你看到的东西放进下面三个盒子。每个盒子只做一件事：事实、关系、反应。</p>
+          <div class="practice-note">提示：先别用“孤独、治愈、自由、生命力”这类结论词。让颜色和动作先说话。</div>
+        </div>
+        <div class="prompt-list reveal d1">
+          <div class="prompt-card"><label for="facts">A / 我看见了什么</label><small>颜色、形状、边缘、位置。只写事实。</small><textarea id="facts" placeholder="例如：三个色块，边缘有刮痕……"></textarea><div class="wordbank"><button class="word-chip" type="button" data-add="湖蓝色">湖蓝色</button><button class="word-chip" type="button" data-add="被挤压的凹处">被挤压的凹处</button><button class="word-chip" type="button" data-add="厚重的笔触">厚重的笔触</button></div></div>
+          <div class="prompt-card"><label for="relations">B / 它们如何发生关系</label><small>用排列、旋转、遮住、挤压、滑入、停留等动词。</small><textarea id="relations" placeholder="例如：色块像门一样围绕着……"></textarea><div class="wordbank"><button class="word-chip" type="button" data-add="围绕着">围绕着</button><button class="word-chip" type="button" data-add="慢慢滑进去">慢慢滑进去</button><button class="word-chip" type="button" data-add="被色彩挤压">被色彩挤压</button></div></div>
+          <div class="prompt-card"><label for="reaction">C / 我在哪里</label><small>加入身体位置和反应，但不急着解释它的象征意义。</small><textarea id="reaction" placeholder="例如：我不自觉地停在那里，仿佛……"></textarea><div class="wordbank"><button class="word-chip" type="button" data-add="我的视线停住了">我的视线停住了</button><button class="word-chip" type="button" data-add="我想藏进去">我想藏进去</button><button class="word-chip" type="button" data-add="时间变慢了">时间变慢了</button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section">
+      <div class="container dark-grid">
+        <div class="reveal"><span class="eyebrow" style="color:var(--coral);">KEEP THE DISTANCE</span><h2 style="margin-top:1.2rem;">深度不等于离开画面。</h2><p>你可以从颜色走到感受，但需要知道自己什么时候已经开始替画面编造心理结论。</p></div>
+        <div class="quote-box reveal d1">
+          <p>一句话如果还能指回某个颜色、形状或观看动作，它通常还站在画面里。</p>
+          <div class="check-lines"><span>我能指出这句话对应的视觉线索。</span><span>我没有把联想说成作品唯一的答案。</span><span>我写的是自己的观看，不是假装知道作者意图。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="compress">
+      <div class="container compress-grid">
+        <div class="reveal"><span class="eyebrow" style="color:var(--cobalt);">FINAL PASS</span><h2 style="margin-top:1.2rem;">把三层内容，压成一句。</h2><p>事实给它骨架，关系给它方向，个人感受给它温度。最后删掉解释过量的部分，让句子留一点空白。</p></div>
+        <div class="composer reveal d1"><label for="final-line">我的一句话</label><textarea id="final-line" maxlength="120" placeholder="例如：我不知道自己是在看它，还是已经慢慢被它看住了。"></textarea><div class="counter"><span>写完后朗读一遍</span><span id="count">0 / 120</span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner"><span>颜色先于解释 · 抽象观看练习</span></div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    document.querySelectorAll('[data-add]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = button.closest('.prompt-card').querySelector('textarea');
+        const addition = button.dataset.add;
+        target.value = target.value.trim() ? `${target.value.trim()}，${addition}` : addition;
+        target.focus();
+      });
+    });
+
+    const turnButton = document.querySelector('#turnButton');
+    const turnImage = document.querySelector('#turnImage');
+    turnButton.addEventListener('click', () => {
+      const turned = turnImage.classList.toggle('turned');
+      turnButton.setAttribute('aria-pressed', String(turned));
+      turnButton.textContent = turned ? '↺ 转回原方向' : '↻ 左转 90°';
+    });
+
+    const finalLine = document.querySelector('#final-line');
+    const count = document.querySelector('#count');
+    finalLine.addEventListener('input', () => { count.textContent = `${finalLine.value.length} / 120`; });
+  </script>
+</body>
+</html>
