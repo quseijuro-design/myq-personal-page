@@ -135,15 +135,16 @@
 
     .portrait-board {
       position: relative;
-      min-height: 560px;
+      min-height: 610px;
     }
 
     .portrait-card {
       position: absolute;
       inset: 34px 0 auto auto;
       width: min(100%, 400px);
-      height: 500px;
-      min-height: 500px;
+      aspect-ratio: 769 / 1024;
+      height: auto;
+      min-height: 0;
       border: 0;
       padding: 0;
       background: transparent;
@@ -159,7 +160,8 @@
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 500px;
+      min-height: 0;
+      aspect-ratio: inherit;
       transform-style: preserve-3d;
       transition: transform 0.68s cubic-bezier(0.2, 0.75, 0.2, 1);
       transform: rotate(2deg);
@@ -176,7 +178,7 @@
       position: absolute;
       inset: 0;
       height: 100%;
-      min-height: 500px;
+      min-height: 0;
       border-radius: 8px;
       backface-visibility: hidden;
       overflow: hidden;
@@ -201,8 +203,8 @@
     }
 
     .portrait-back {
-      background: #fff;
-      padding: 12px;
+      background: transparent;
+      padding: 0;
       transform: rotateY(180deg);
     }
 
@@ -247,7 +249,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 476px;
+      min-height: 0;
       object-fit: contain;
       border-radius: 6px;
     }
@@ -845,6 +847,68 @@
       margin-bottom: 30px;
     }
 
+    .reset-template {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(21, 24, 33, 0.68);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+
+    .reset-template.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .reset-template-panel {
+      position: relative;
+      width: min(100%, 680px);
+      max-height: min(78vh, 620px);
+      overflow: auto;
+      padding: clamp(24px, 4vw, 34px);
+      border-radius: 8px;
+      background: var(--blue);
+      border: 3px solid rgba(245, 183, 10, 0.78);
+      box-shadow: 16px 16px 0 var(--ink);
+      color: #fefcf6;
+    }
+
+    .reset-template-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.25rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .reset-template strong {
+      display: block;
+      margin-bottom: 10px;
+      padding-right: 46px;
+      color: var(--yellow);
+      font-size: 0.92rem;
+    }
+
+    .reset-template pre {
+      white-space: pre-wrap;
+      font: inherit;
+      line-height: 1.75;
+      color: rgba(254, 252, 246, 0.86);
+    }
+
     .signature {
       position: relative;
       min-height: 230px;
@@ -896,7 +960,7 @@
         grid-template-columns: 1fr;
       }
       .hero { min-height: auto; }
-      .portrait-board { min-height: 570px; }
+      .portrait-board { min-height: 620px; }
       .portrait-card { left: 0; right: auto; width: min(94%, 400px); }
       .three-col,
       .circle-model,
@@ -924,15 +988,15 @@
     @media (max-width: 600px) {
       body { font-size: 15px; }
       .hero-actions { width: 100%; }
-      .portrait-board { min-height: 500px; }
+      .portrait-board { min-height: 540px; }
       .portrait-card,
       .portrait-card-inner,
       .portrait-face {
-        height: 440px;
-        min-height: 440px;
+        height: auto;
+        min-height: 0;
       }
       .portrait-card-inner { box-shadow: 10px 10px 0 var(--ink); }
-      .xhs-card-image { min-height: 416px; }
+      .xhs-card-image { min-height: 0; }
       .steps-container { padding-left: 52px; }
       .step-num { left: -52px; }
     }
@@ -961,7 +1025,7 @@
               <span class="follow-cue">点击头像 -> 关注我</span>
             </span>
             <span class="portrait-face portrait-back">
-              <img class="xhs-card-image" src="assets/xiaohongshu-card.jpg" alt="秃头少女想把头染成绿的小红书账号名片">
+              <img class="xhs-card-image" src="assets/xiaohongshu-card-custom.jpg" alt="秃头少女想把头染成绿的小红书账号名片">
             </span>
           </span>
         </button>
@@ -1221,9 +1285,23 @@
       <div class="container accent-grid">
         <div class="reveal">
           <span class="label-caps" style="color:#fefcf6;">Contact</span>
-          <h2>写下你想重新表达的事</h2>
-          <p>可以从一封邮件开始。讲项目、讲世界、讲那些还没说顺但很想说清楚的东西。</p>
-          <a class="btn btn-secondary" href="mailto:QuSeijuro@gmail.com?subject=Reset%20%E4%B8%80%E4%B8%8B%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F&body=%E4%BD%A0%E5%A5%BD%EF%BC%8C%E6%88%91%E4%B9%9F%E6%83%B3%20Reset%20%E4%B8%80%E4%B8%8B%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%83%B3%E5%92%8C%E4%BD%A0%E8%81%8A%E8%81%8A%EF%BC%9A" style="background:var(--yellow);border-color:var(--yellow);color:var(--ink);">写一封 Reset 邮件</a>
+          <h2>发起一次表达 Reset</h2>
+          <p>不用一次说顺。先把卡住的、混乱的、还没成形的东西寄出来，我们再一起把它整理成可以被理解的表达。</p>
+          <button class="btn btn-secondary" type="button" data-reset-template-trigger style="background:var(--yellow);border-color:var(--yellow);color:var(--ink);">发起一次表达 Reset →</button>
+          <div class="reset-template" data-reset-template aria-live="polite" role="dialog" aria-modal="true" aria-label="表达 Reset 邮件模板">
+            <div class="reset-template-panel">
+              <button class="reset-template-close" type="button" data-reset-template-close aria-label="关闭表达 Reset 模板">×</button>
+              <strong>已生成邮件模板，可以发给 QuSeijuro@gmail.com</strong>
+              <pre data-reset-template-text>收件人：QuSeijuro@gmail.com
+主题：我想发起一次表达 Reset
+
+你好，我想发起一次表达 Reset。
+
+我现在想说清楚的是：
+我卡住的地方是：
+我希望最后变成：</pre>
+            </div>
+          </div>
         </div>
         <div class="signature reveal reveal-d1" aria-label="手写签名装饰">
           <span>Try again</span>
@@ -1251,6 +1329,41 @@
         card.classList.toggle('is-flipped');
       });
     });
+
+    const resetTrigger = document.querySelector('[data-reset-template-trigger]');
+    const resetTemplate = document.querySelector('[data-reset-template]');
+    const resetTemplateText = document.querySelector('[data-reset-template-text]');
+    const resetTemplateClose = document.querySelector('[data-reset-template-close]');
+
+    if (resetTrigger && resetTemplate && resetTemplateText && resetTemplateClose) {
+      resetTrigger.addEventListener('click', async () => {
+        resetTemplate.classList.add('is-visible');
+        resetTrigger.textContent = '模板已生成，可复制发送';
+        resetTemplateClose.focus();
+
+        try {
+          await navigator.clipboard.writeText(resetTemplateText.textContent.trim());
+          resetTrigger.textContent = '已复制表达 Reset 模板';
+        } catch (error) {
+          resetTrigger.textContent = '模板已生成，手动复制发送';
+        }
+      });
+
+      function closeResetTemplate() {
+        resetTemplate.classList.remove('is-visible');
+        resetTrigger.focus();
+      }
+
+      resetTemplateClose.addEventListener('click', closeResetTemplate);
+      resetTemplate.addEventListener('click', (event) => {
+        if (event.target === resetTemplate) closeResetTemplate();
+      });
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && resetTemplate.classList.contains('is-visible')) {
+          closeResetTemplate();
+        }
+      });
+    }
   </script>
 </body>
 </html>
